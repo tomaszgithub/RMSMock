@@ -39,9 +39,13 @@ public class TradeKafkaPublisher {
             ProducerRecord<UUID, String> record = new ProducerRecord<>(this.TOPIC, tradeLifecycle.getTrade().getTcn().getId(), gson.toJson(tradeLifecycle));
             try {
                 this.producer.send(record).get();
+                System.out.println("TradeKafkaPublisher send to topic" + this.TOPIC);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        else{
+            System.out.println("TradeKafkaPublisher not send no producer topic");
         }
     }
 }

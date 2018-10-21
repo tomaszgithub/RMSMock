@@ -3,6 +3,7 @@ package com.reporting.mocks.endpoints.kafka;
 import com.google.gson.Gson;
 import com.reporting.mocks.configuration.ApplicationConfig;
 import com.reporting.mocks.model.RiskResult;
+import com.reporting.mocks.model.risks.Risk;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -34,13 +35,32 @@ public class RiskResultKafkaProducer {
 
     public void send(RiskResult riskResult) {
         if (this.producer != null) {
+            UUID riskResultID = riskResult.getRiskRunId().getId();
             Gson gson = new Gson();
-            ProducerRecord<UUID, String> record = new ProducerRecord<>(this.TOPIC, riskResult.getRiskRunId().getId(), gson.toJson(riskResult));
+            /*ProducerRecord<UUID, String> record = new ProducerRecord<>(this.TOPIC, riskResult.getRiskRunId().getId(), gson.toJson(riskResult));
             try {
+
                 this.producer.send(record).get();
             } catch (Exception e) {
                 e.printStackTrace();
+            }*/
+            int coutn = riskResult.getResults().size();
+            for (Risk risk:riskResult.getResults()) {
+
+                ProducerRecord<UUID, String> record = new ProducerRecord<>(this.TOPIC, riskResultID, gson.toJson(risk));
+                try {
+
+                    this.producer.send(record).get();
+                    System.out.println("all " + coutn+ " RiskResultKafkaProducer send to topic" + this.TOPIC+ " " +record.value());
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+
             }
+
+        } else{
+            System.out.println("RiskResultKafkaProducer not send no producer topic");
         }
     }
 

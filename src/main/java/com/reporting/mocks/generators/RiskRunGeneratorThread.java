@@ -94,7 +94,9 @@ public class RiskRunGeneratorThread implements Runnable {
                 }
                 */
 
-
+/*System.out.println("XX" +trades.stream());
+if(4>3)
+throw new RuntimeException();*/
 
                 for(int fragment = 0; fragment < fragmentCount; fragment++) {
                     List<Risk> risks = new ArrayList<>();

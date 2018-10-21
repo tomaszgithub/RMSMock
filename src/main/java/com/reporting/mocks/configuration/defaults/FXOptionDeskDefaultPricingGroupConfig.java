@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FXOptionDeskDefaultPricingGroupConfig extends PricingGroupConfig {
-    protected final int startingTradeCount = 100;
+    /*protected final int startingTradeCount = 100;
     protected final int newTradeStart = 0;
     protected final int newTradePeriodicity = 1000;        // number of milliseconds between new tcnTrades (default: 10s)
 
@@ -20,7 +20,18 @@ public class FXOptionDeskDefaultPricingGroupConfig extends PricingGroupConfig {
     protected final int modifiedTradePeriodicity = 60 * 1000;    // number of milliseconds between trade modifications (default: 30s)
 
     protected final int deleteTadeStart = 120 * 1000;
-    protected final int deleteTradePeriodicity = 120 * 1000;
+    protected final int deleteTradePeriodicity = 120 * 1000;*/
+
+    protected final int startingTradeCount = 100;
+    protected final int newTradeStart = 0;
+    protected final int newTradePeriodicity = 1000 * 10000000;        // number of milliseconds between new tcnTrades (default: 10s)
+
+    protected final int modifiedTradeStart = 6000000 * 1000;
+    protected final int modifiedTradePeriodicity = 60000000 * 1000;    // number of milliseconds between trade modifications (default: 30s)
+
+    protected final int deleteTadeStart = 6000000 * 1000;;
+    protected final int deleteTradePeriodicity = 600000 * 1000;
+
 
     public FXOptionDeskDefaultPricingGroupConfig() {
         ArrayList<String> books = new ArrayList<>();
@@ -56,12 +67,12 @@ public class FXOptionDeskDefaultPricingGroupConfig extends PricingGroupConfig {
         ArrayList<RiskType> eodr = new ArrayList<>();
         eodr.add(RiskType.PV);
         eodr.add(RiskType.DELTA);
-        eodr.add(RiskType.GAMMA);
+        //eodr.add(RiskType.GAMMA);
         this.endofdayConfig = new EndofDayConfig(eodr, 5 * 60 * 1000);
 
         ArrayList<IntradayRiskType> indr = new ArrayList<>();
         indr.add(new IntradayRiskType(RiskType.PV, 1));
-        indr.add(new IntradayRiskType(RiskType.DELTA, 3));
+        //indr.add(new IntradayRiskType(RiskType.DELTA, 3));
         indr.add(new IntradayRiskType(RiskType.VEGA, 3));
         this.intradayConfig = new IntradayConfig(indr);
     }

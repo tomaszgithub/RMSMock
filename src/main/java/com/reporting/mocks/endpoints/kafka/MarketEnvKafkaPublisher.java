@@ -38,9 +38,13 @@ public class MarketEnvKafkaPublisher {
             ProducerRecord<UUID, String> record = new ProducerRecord<>(this.TOPIC, marketEnv.getId().getId(), gson.toJson(marketEnv));
             try {
                 this.producer.send(record).get();
+                System.out.println("MarketEnvKafkaPublisher send to topic" + this.TOPIC);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+        else{
+            System.out.println("MarketEnvKafkaPublisher not send no producer topic");
         }
     }
 }

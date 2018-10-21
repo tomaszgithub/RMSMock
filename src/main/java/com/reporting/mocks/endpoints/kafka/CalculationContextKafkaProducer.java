@@ -31,14 +31,18 @@ public class CalculationContextKafkaProducer {
     }
 
     public void send(CalculationContext calculationContext) {
+
         if (this.producer != null) {
             Gson gson = new Gson();
             ProducerRecord<UUID, String> record = new ProducerRecord<>(this.TOPIC, calculationContext.getCalculationContextId().getId(), gson.toJson(calculationContext));
             try {
                 this.producer.send(record).get();
+                System.out.println("CalculationContextKafkaProducer send to topic" + this.TOPIC);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else{
+            System.out.println("CalculationContextKafkaProducer not send no producer topic");
         }
     }
 }

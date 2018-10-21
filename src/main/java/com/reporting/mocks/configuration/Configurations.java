@@ -3,6 +3,7 @@ package com.reporting.mocks.configuration;
 import com.reporting.mocks.configuration.defaults.FXOptionDeskDefaultPricingGroupConfig;
 import com.reporting.mocks.configuration.defaults.FXSpotDeskDefaultPricingGroupConfig;
 import com.reporting.mocks.configuration.defaults.FXSwapsDeskDefaultPricingGroupConfig;
+import com.reporting.mocks.configuration.defaults.WroclawDeskDefaultPricingGroupConfig;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -23,6 +24,7 @@ public class Configurations {
         this.addPricingGroup(new FXSwapsDeskDefaultPricingGroupConfig());
         this.addPricingGroup(new FXOptionDeskDefaultPricingGroupConfig());
         this.addPricingGroup(new FXSpotDeskDefaultPricingGroupConfig());
+        this.addPricingGroup(new WroclawDeskDefaultPricingGroupConfig());
     }
 
     public Collection<PricingGroupConfig> getPricingGroups() {

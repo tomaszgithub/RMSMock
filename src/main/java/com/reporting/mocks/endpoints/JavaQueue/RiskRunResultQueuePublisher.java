@@ -38,6 +38,10 @@ public class RiskRunResultQueuePublisher implements RiskRunPublisher {
 
     @Override
     public void publishIntradayRiskRun(RiskResult riskResult) {
+
+        /*if(4>3)
+        throw new RuntimeException();*/
+
         try {
             riskQueue.put(riskResult);
         }

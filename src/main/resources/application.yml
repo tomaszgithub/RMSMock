@@ -8,10 +8,11 @@ server:
   #port: ${PORT:${SERVER_PORT:0}}
 version: 0.0.1
 kafka:
-  server: localhost:9092
+  server: 13.80.252.88:9092
   topic:
     intradayriskset: IntraDayRiskSet
-    intradayrisktick: IntraDayRiskTick
+    #intradayrisktick: IntraDayRiskTick #disableed
     intradaytrade: IntraDayTrade
     calccontext: CalculationContext
     market: MarketEnv
+
